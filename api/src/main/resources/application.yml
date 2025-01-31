@@ -1,0 +1,36 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: auth
+          uri: http://localhost:8081
+          predicates:
+            - Path=/auth/**
+        - id: client
+          uri: http://localhost:8082
+          predicates:
+            - Path=/clientes/**
+        - id: supplier
+          uri: http://localhost:8086
+          predicates:
+            - Path=/fornecedores/**
+        - id: address
+          uri: http://localhost:8084
+          predicates:
+            - Path=/enderecos/**
+        - id: product
+          uri: http://localhost:8085
+          predicates:
+            - Path=/produtos/**
+        - id: order
+          uri: http://localhost:8083
+          predicates:
+            - Path=/pedidos/**
+
+# Configuração de CORS
+cors:
+  allowed-origins: "http://localhost:4200"  # Frontend local ou URL do seu frontend
+  allowed-methods: "GET,POST,PUT,DELETE"
+  allowed-headers: "Content-Type,Authorization"
+  allow-credentials: true
+  max-age: 3600
